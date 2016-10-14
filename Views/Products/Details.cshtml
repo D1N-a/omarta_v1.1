@@ -1,0 +1,20 @@
+﻿@model omarta_v1._1.Models.Products
+
+@{
+    ViewBag.Title = @Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>@Model.Name</h1>
+    <hr />
+    <i>@Model.LastChange.ToString("dd-MMMM-yyyy")</i><br /><br />
+    <b>Pārdošanas cena:</b> @Model.SalesPrice €<br />
+    <b>Iepirkšanas cena:</b> @Model.BuyPrice €<br />
+    <b>Skaits:</b> @Model.Quantity <br />
+    <b>Pieejamais skaits:</b> @Model.AvailableQuantity <br />
+    <b>Apraksts:</b> @Html.Raw(System.Web.HttpUtility.HtmlDecode(@Model.Description)) <br />
+</div>
+<p>
+    <a href="@Url.Action("Index","Products")" class="btn btn-default">< Back to List</a>
+</p>
