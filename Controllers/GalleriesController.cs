@@ -18,7 +18,10 @@ namespace omarta_v1._1.Controllers
         // GET: Galleries
         public ActionResult Index()
         {
+<<<<<<< HEAD
             ViewBag.Photo = db.Photos.ToList();
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
             return View(db.Galleries.ToList());
         }
 
@@ -33,14 +36,39 @@ namespace omarta_v1._1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Create([Bind(Include = "ID,Name,Cover")] Gallery gallery)
         {
             if (ModelState.IsValid)
             {
+=======
+        public ActionResult Create([Bind(Include = "ID,Name,Cover")] Gallery gallery, HttpPostedFileBase cover)
+        {
+            if (ModelState.IsValid)
+            {
+                if (cover == null)
+                {
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
                     gallery.Cover = "/Images/standart.jpg";
                     db.Galleries.Add(gallery);
                     db.SaveChanges();
                     return RedirectToAction("Index");
+<<<<<<< HEAD
+=======
+                }
+                else
+                {
+                    cover.SaveAs(Server.MapPath("~/Images/News") + Path.GetFileName(cover.FileName));
+
+                    string filename = Path.GetFileName(cover.FileName);
+
+                    gallery.Cover = "/Images/News" + Path.GetFileName(cover.FileName);
+
+                    db.Galleries.Add(gallery);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
             }
 
             return View(gallery);
@@ -72,7 +100,20 @@ namespace omarta_v1._1.Controllers
             {
                 Gallery holder = db.Galleries.Where(x => x.ID == gallery.ID).FirstOrDefault();
                 holder.Name = gallery.Name;
+<<<<<<< HEAD
                 holder.Cover = holder.Cover;
+=======
+                if (cover == null)
+                {
+                    holder.Cover = holder.Cover;
+                }
+                else
+                {
+                    cover.SaveAs(Server.MapPath("~/Images/News") + Path.GetFileName(cover.FileName));
+                    string filename = Path.GetFileName(cover.FileName);
+                    holder.Cover = "/Images/News" + Path.GetFileName(cover.FileName);
+                }
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

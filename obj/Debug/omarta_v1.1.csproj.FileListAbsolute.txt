@@ -83,4 +83,7 @@ c:\users\diana\documents\visual studio 2015\Projects\omarta_v1.1\omarta_v1.1\obj
 C:\Users\Diana\documents\visual studio 2015\Projects\omarta_v1.1\omarta_v1.1\obj\Debug\omarta_v1._1.Migrations.Initials.resources
 C:\Users\Diana\documents\visual studio 2015\Projects\omarta_v1.1\omarta_v1.1\obj\Debug\omarta_v1.1.csproj.GenerateResource.Cache
 C:\Users\Diana\documents\visual studio 2015\Projects\omarta_v1.1\omarta_v1.1\obj\Debug\omarta_v1._1.Migrations.DataAnnotations.resources
+<<<<<<< HEAD
 C:\Users\Diana\documents\visual studio 2015\Projects\omarta_v1.1\omarta_v1.1\obj\Debug\omarta_v1._1.Migrations.Initial.resources
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e

@@ -8,7 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using omarta_v1._1.Models;
 using System.IO;
+<<<<<<< HEAD
 using System.Text;
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
 
 namespace omarta_v1._1.Controllers
 {
@@ -171,4 +174,7 @@ namespace omarta_v1._1.Controllers
         }
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e

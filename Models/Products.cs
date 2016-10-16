@@ -36,8 +36,11 @@ namespace omarta_v1._1.Models
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
 
+<<<<<<< HEAD
         public int GalleryID { get; set; }
         public virtual Gallery Gallery { get; set; }
 
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
     }
 }

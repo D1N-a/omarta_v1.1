@@ -204,7 +204,10 @@
     <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\UserController.cs" />
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,10 +219,13 @@
     <Compile Include="Migrations\201610101654530_DataAnnotations.Designer.cs">
       <DependentUpon>201610101654530_DataAnnotations.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Migrations\201610151038427_Initial.cs" />
     <Compile Include="Migrations\201610151038427_Initial.Designer.cs">
       <DependentUpon>201610151038427_Initial.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -1030,6 +1036,7 @@
     <Content Include="Content\gallery\js\jquery-1.10.2.min.js" />
     <Content Include="Content\images\button_up.png" />
     <Content Include="Content\images\omarta.jpg" />
+<<<<<<< HEAD
     <Content Include="Content\js\ie\backgroundsize.min.htc" />
     <Content Include="Content\js\ie\html5shiv.js" />
     <Content Include="Content\js\ie\PIE.htc" />
@@ -1041,6 +1048,8 @@
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\skel.min.js" />
     <Content Include="Content\js\util.js" />
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
     <Content Include="Content\scrolling\css\bootstrap.css" />
     <Content Include="Content\scrolling\css\bootstrap.min.css" />
     <Content Include="Content\scrolling\css\scrolling-nav.css" />
@@ -1225,7 +1234,25 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Home\Index.cshtml" />
+=======
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -1251,11 +1278,18 @@
     <Content Include="Views\Galleries\Edit.cshtml" />
     <Content Include="Views\Galleries\Index.cshtml" />
     <Content Include="Views\Photos\Create.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Photos\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutProducts.cshtml" />
     <Content Include="Views\User\News.cshtml" />
+=======
+    <Content Include="Views\Photos\Delete.cshtml" />
+    <Content Include="Views\Photos\Details.cshtml" />
+    <Content Include="Views\Photos\Edit.cshtml" />
+    <Content Include="Views\Photos\Index.cshtml" />
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1275,9 +1309,12 @@
     <EmbeddedResource Include="Migrations\201610101654530_DataAnnotations.resx">
       <DependentUpon>201610101654530_DataAnnotations.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Migrations\201610151038427_Initial.resx">
       <DependentUpon>201610151038427_Initial.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

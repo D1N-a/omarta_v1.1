@@ -24,7 +24,10 @@ namespace omarta_v1._1.Controllers
             ViewBag.GalleryName = g.Name;
             var ph = db.Photos.Where(x => x.GalleryID == id);
             //var photos = db.Photos.Include(p => p.Gallery);
+<<<<<<< HEAD
             //ViewBag.Photo = ph.ToList();
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
             return View(ph.ToList());
         }
 
@@ -131,9 +134,24 @@ namespace omarta_v1._1.Controllers
             {
                 return HttpNotFound();
             }
+<<<<<<< HEAD
             db.Photos.Remove(photo);
             db.SaveChanges();
             return RedirectToAction("Index", new { id = photo.GalleryID });
+=======
+            return View(photo);
+        }
+
+        // POST: Photos/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Photo photo = db.Photos.Find(id);
+            db.Photos.Remove(photo);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
         }
 
         protected override void Dispose(bool disposing)

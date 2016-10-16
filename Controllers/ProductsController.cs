@@ -39,7 +39,10 @@ namespace omarta_v1._1.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
+<<<<<<< HEAD
             ViewBag.GalleryID = new SelectList(db.Galleries, "ID", "Name");
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name");
             return View();
         }
@@ -49,7 +52,11 @@ namespace omarta_v1._1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Create([Bind(Include = "ID,Name,SalesPrice,BuyPrice,Description,Quantity,AvailableQuantity,LastChange,CategoryID,GalleryID")] Products products)
+=======
+        public ActionResult Create([Bind(Include = "ID,Name,SalesPrice,BuyPrice,Description,Quantity,AvailableQuantity,LastChange,CategoryID")] Products products)
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +83,10 @@ namespace omarta_v1._1.Controllers
             {
                 return HttpNotFound();
             }
+<<<<<<< HEAD
             ViewBag.GalleryID = new SelectList(db.Galleries, "ID", "Name", products.GalleryID);
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", products.CategoryID);
             return View(products);
         }
@@ -100,16 +110,23 @@ namespace omarta_v1._1.Controllers
                 holder.Name = products.Name;
                 holder.Quantity = products.Quantity;
                 holder.SalesPrice = products.SalesPrice;
+<<<<<<< HEAD
                 holder.GalleryID = products.GalleryID;
                 holder.Gallery = products.Gallery;
 
+=======
+  
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
 
                 //db.Entry(products).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryID = new SelectList(db.Categories, "ID", "Name", products.CategoryID);
+<<<<<<< HEAD
             ViewBag.GalleryID = new SelectList(db.Galleries, "ID", "Name", products.GalleryID);
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
             return View(products);
         }
 

@@ -43,6 +43,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Title)
         </td>
+<<<<<<< HEAD
         <td style="width:30%;">
            @if (item.Text.Length <= 100)
            {
@@ -53,6 +54,10 @@
             @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Text.Substring(0, 100)))
            }
             
+=======
+        <td>
+            @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Text))
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
         </td>
         <td>
             <img src="@item.ImagePath" height='100' width='150' />
