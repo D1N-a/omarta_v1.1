@@ -1,0 +1,32 @@
+﻿@model omarta_v1._1.Models.News
+
+@{
+    ViewBag.Title = "Ziņa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>@Model.Title</h1>
+    <hr />
+    <i>@Model.Newsdate</i>
+    <div align='right'>
+         @if (@Model.Show == 0)
+         {
+            <a data-toggle="modal" href="#statusModal" data-id=@Model.ID data-name=@Model.Title data-tabula="zina" class="btn btn-success" data-status=@Model.Show>Publicēt rakstu</a>
+         }
+         else
+         {
+            <a data-toggle="modal" href="#statusModal" data-id=@Model.ID data-name=@Model.Title data-tabula="zina" class="btn btn-danger" data-status=@Model.Show>Nepublicēt rakstu</a>
+         }
+    </div>
+    <div align='center'>
+        <img src=@Model.ImagePath height='300' width='500' / ><br />
+    </div>
+    <br /> 
+    @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Text))
+
+</div>
+<br /><br />
+<p>
+    <a href="@Url.Action("Index","News")" class="btn btn-default">< Back to List</a>
+</p>

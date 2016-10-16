@@ -1,0 +1,64 @@
+﻿@model IEnumerable<omarta_v1._1.Models.Sales>
+
+@{
+    ViewBag.Title = "Pārdošanās";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Pārdošanas</h3>
+<hr />
+
+<p>
+    @Html.ActionLink("Izveidot jaunu", "Create", "Sales", new { @class = "btn btn-lrg btn-primary" })
+</p>
+<table id="example" class="table table-striped responsive-utilities jambo_table">
+    <thead>
+        <tr>
+            <th style="width:1px;"></th>
+            <th>
+                Produkts
+            </th>
+            <th>
+                Skaits
+            </th>
+            <th>
+                Pārdošanas Summa
+            </th>
+            <th>
+                Iepirkuma Summa
+            </th>
+            <th>
+                Peļņa
+            </th>
+            <th>
+                Datums
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @(item.Quantity* item.Product.SalesPrice)
+                </td>
+                <td>
+                    @(item.Quantity * item.Product.BuyPrice)
+                </td>
+                <td>
+                    @(item.Quantity * item.Product.SalesPrice - item.Quantity * item.Product.BuyPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salesdate)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table><br /><br /><br />

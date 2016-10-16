@@ -1,0 +1,38 @@
+﻿@model IEnumerable<omarta_v1._1.Models.Gallery>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Produktu galerijas</h3>
+<hr />
+
+<p>
+    @Html.ActionLink("Izveidot jaunu", "Create", "Galleries", new { @class = "btn btn-lrg btn-primary" })
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="col-md-55">
+        <div class="thumbnail">
+            <div class="image view view-first">
+                <img style="width: 100%; display: block;" src=@item.Cover alt="image" />
+                <div class="mask">
+                    <p>@item.Name</p>
+                    <div class="tools tools-bottom">
+                        <a href="@Url.Action("Index","Photos", new { id = item.ID })"><i class='fa fa-photo'></i></a>
+                        <a href="@Url.Action("Edit","Galleries", new { id = item.ID })"><i class='fa fa-edit'></i></a>
+                        <a data-toggle="modal" href="#deleteModal" data-id=@item.ID data-name=@item.Name data-tabula="galerija"><i class='fa fa-close'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="caption">
+                <p>
+                    @item.Name<br />
+                </p>
+            </div>
+        </div>
+    </div>
+}
+

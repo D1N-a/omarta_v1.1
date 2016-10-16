@@ -1,0 +1,91 @@
+﻿@{
+    ViewBag.Title = "o!Marta";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<a style='position: fixed; bottom: 10px; right: 1px; cursor:pointer; display:none;'
+   href='#' id='Go_Top'>
+    <img src="~/Content/images/button_up.png" height="50" weight="50" class="arrow" />
+</a>
+
+<section id="banner">
+    <header>
+        <h2><strong>O!Marta</strong></h2>
+    </header>
+</section>
+
+<div class="wrapper style2">
+    <div id="home"></div>
+    <article id="main" class="container special">
+        <a href="#" class="image featured"><img src="~/Content/images/omarta.jpg" alt="" /></a>
+        <header>
+            <div id="about"></div>
+            <h2><a href="#">Par uzņēmumu</a></h2>
+            <p>
+                Sociis aenean eu aenean mollis mollis facilisis primis ornare penatibus aenean. Cursus ac enim
+                pulvinar curabitur morbi convallis. Lectus malesuada sed fermentum dolore amet.
+            </p>
+        </header>
+        <p>
+            Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan massa
+            posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis purus
+            sit arcu sociis. Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis aliquam
+            mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan
+            lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
+            consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi augue
+            interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper lacinia
+            natoque aenean scelerisque.
+        </p>
+    </article>
+
+</div>
+
+<div class="wrapper style1">
+    <section id="features" class="container special">
+        <header>
+            <h2>Jaunumi</h2>
+            <p>Ipsum volutpat consectetur orci metus consequat imperdiet duis integer semper magna.</p>
+        </header>
+        <div class="row">
+            @foreach (var n in ViewBag.News)
+            {
+            <article class="4u 12u(mobile) special">
+                <a href="#" class="image featured "><img src=@n.ImagePath alt="" class="img-responsive" /></a>
+                <header>
+                    <h3><a href="#">@n.Title</a></h3>
+                </header>
+                <p>
+                    @if (n.Text.Length <= 100)
+                    {
+                        @Html.Raw(System.Web.HttpUtility.HtmlDecode(n.Text))
+                    }
+                    else
+                    {
+                        @Html.Raw(System.Web.HttpUtility.HtmlDecode(n.Text.Substring(0, 100)))
+                    }
+                </p>
+            </article>
+            }
+        </div>
+        <div align ="right">
+            <a href="@Url.Action("News","User")"> Visas ziņas</a>
+        </div>
+    </section>
+
+</div>
+
+<section class="carousel">
+    <div class="reel">
+        @foreach(var c in ViewBag.Categories)
+        {
+        <article>
+            <a href="#" class="image featured"><img src=@c.ImagePath height='200' width='150' /></a>
+            <header>
+                <h3><a href="#">@c.Name</a></h3>
+            </header>
+        </article>
+        }
+    </div>
+</section>
+
+
+
