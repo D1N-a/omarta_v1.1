@@ -1,0 +1,72 @@
+﻿@model IEnumerable<omarta_v1._1.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>Pasūtījumi</h3>
+<hr />
+
+<table id="example" class="table table-striped responsive-utilities jambo_table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                Produkts
+            </th>
+            <th>
+               Skaits
+            </th>
+            <th>
+                Pasutījuma datums
+            </th>
+            <th>
+                Paņemšanas datums
+            </th>
+            <th>
+                Pasutījuma komantārs
+            </th>
+            <th>
+                Pasutījuma statuss
+            </th>
+            <th></th>
+        </tr>
+</thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TakeDate)
+                </td>
+                <td>
+                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Text))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @if (item.Status == 1)
+                    {
+                        
+                    }
+                    else
+                    {
+                        <a class='btn btn-success' data-toggle="modal" href="#statusModal" data-id=@item.ID data-name=@item.Product.Name data-status=@item.Status data-tabula="pasutijums"><i class='fa fa-check'></i></a>
+                    }
+                    <a class='btn btn-danger' data-toggle="modal" href="#deleteModal" data-id=@item.ID data-name=@item.Product.Name data-tabula="pasutijums"><i class='fa fa-close'></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

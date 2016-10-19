@@ -1,0 +1,84 @@
+﻿@model IEnumerable<omarta_v1._1.Models.Products>
+
+@{
+    ViewBag.Title = "Produkti";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Produkti</h3>
+<hr />
+
+<p>
+   @Html.ActionLink("Izveidot jaunu", "Create", "Products", new { @class = "btn btn-lrg btn-primary" })
+</p>
+<table id="example" class="table table-striped responsive-utilities jambo_table">
+    <thead>
+        <tr>
+            <th style="width:1px;">
+
+            </th>
+            <th>
+                Kategorija
+            </th>
+            <th>
+               Produktu nosaukums
+            </th>
+            <th>
+                Pārdošanas cena
+            </th>
+            <th>
+                Iepirkuma cena
+            </th>
+            <th>
+                Produkta apraksts
+            </th>
+            <th>
+                Skaits
+            </th>
+            <th>
+                Pieejamais skaits
+            </th>
+            <th>
+                Pedējas izmaiņas
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SalesPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BuyPrice)
+                </td>
+                <td>
+                   @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Description))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvailableQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastChange)
+                </td>
+                <td>
+                    <a class='btn btn-success' href="@Url.Action("Details","Products", new { id = item.ID })"><i class='fa fa-book'></i></a>
+                    <a class='btn btn-info' href="@Url.Action("Edit","Products", new { id = item.ID })"><i class='fa fa-edit'></i></a>
+                    <a class='btn btn-danger' data-toggle="modal" href="#deleteModal" data-id=@item.ID data-name=@item.Name data-tabula="produkts"><i class='fa fa-close'></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table><br /> <br /> <br />

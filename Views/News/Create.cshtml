@@ -1,0 +1,70 @@
+﻿@model omarta_v1._1.Models.News
+
+@{
+    ViewBag.Title = "Izveidot ziņu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "News", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <div class="x_panel">
+            <h4>Ziņas</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="control-label col-md-2"><b>Virsraksts</b></div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2"><b>Datums</b></div>
+                <div class="col-md-4">
+                    <input type="text" id="Newsdate" class="form-control datepicker" name="Newsdate" />
+                    @Html.ValidationMessageFor(model => model.Newsdate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2"><b>Pāradās</b></div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Show, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Show, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2"><b>Attēls</b></div>
+                <input type="file" id="fileUpload" class="file" name="fileUpload" />
+                @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2"><b>Teksts</b></div>
+                <div class="col-md-8">
+                    <textarea id="Text" class="ckeditor" name="Text"> </textarea>
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Izveidot" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+        </div>
+}
+
+<div>
+    <a href="@Url.Action("Index","News")" class="btn btn-default">< Back to List</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

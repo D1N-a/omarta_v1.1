@@ -1,0 +1,99 @@
+﻿@model omarta_v1._1.Models.Comment
+@{
+    ViewBag.Title = @ViewBag.Products.Name;
+    Layout = "~/Views/Shared/_LayoutProducts.cshtml";
+}
+
+<section id="banner">
+    <header>
+        <h2><strong></strong></h2>
+    </header>
+</section>
+<div class="wrapper style2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2>@ViewBag.Products.Name</h2>
+                <div align="right"><a class="btn btn-default" href="@Url.Action("Create","Orders", new { id = @ViewBag.Products.ID})">Pasūtīt</a></div>
+                <div class="row">
+                    @foreach (var g in ViewBag.Gallery)
+                    {
+                        <div class="col-md-4">
+                            <img src=@g.ImagePath class="thumbnail img-responsive" />
+                        </div>
+                    }
+                </div>
+                <p><b>Cena:</b> @ViewBag.Products.SalesPrice</p>
+                <p><b>Skaits:</b> @ViewBag.Products.AvailableQuantity</p>
+                <p><b>Produkta apraksts:</b> @Html.Raw(System.Web.HttpUtility.HtmlDecode(@ViewBag.Products.Description))</p>
+                <a href="@Url.Action("Products","User", new { id = 0})"> Atpakaļ pie produktiem </a>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="well">
+                    <h3>Komentāri</h3>
+                    @{ var prod_id = (int)@ViewBag.Products.ID; }
+                    @using (Html.BeginForm(Html.BeginForm("Create", "Comments", FormMethod.Post, new { enctype = "multipart/form-data" })))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <input type="hidden" id="ProductID" class="ckeditor" name="ProductID" value=@prod_id>
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                    <div class="control-label col-md-2"><b>Vārds</b></div>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => Model.Author, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => Model.Author, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="control-label col-md-2"><b>Komentārs</b></div>
+                                    <div class="col-md-8">
+                                        <textarea id="Text" class="ckeditor" name="Text"> </textarea>
+                                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="control-label col-md-2"><b>Attēls</b></div>
+                                    <div class="col-md-4">
+                                        <input type="file" id="fileUpload" class="file" name="fileUpload" />
+                                        @Html.ValidationMessageFor(model => model.ImagePath, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Komentēt" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </div>
+                    }
+                    @foreach (var c in ViewBag.Comments)
+                    { 
+                        <div class="well">
+                            @c.Author
+                            <br />
+                            @if (@c.ImagePath != null)
+                            {
+                                <div class="col-md-4">
+                                    <img src=@c.ImagePath class="thumbnail img-responsive" />
+                                </div>
+                            }
+                                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(@c.Text))
+                        </div>
+                     }
+                    
+                    </div>
+                </div>
+         </div>
+    </div>
+</div>
+

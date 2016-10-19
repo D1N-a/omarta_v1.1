@@ -1,0 +1,55 @@
+﻿@model omarta_v1._1.Models.Products
+
+@{
+    ViewBag.Title = @Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1>@Model.Name</h1>
+    <hr />
+    <i>@Model.LastChange.ToString("dd-MMMM-yyyy")</i><br /><br />
+    <div class="row">
+        @foreach (var g in ViewBag.Gallery)
+        {
+            <div class="col-md-4">
+                <img src=@g.ImagePath class="thumbnail img-responsive" />
+            </div>
+        }
+    </div>
+    <br />
+    <b>Pārdošanas cena:</b> @Model.SalesPrice €<br />
+    <b>Iepirkšanas cena:</b> @Model.BuyPrice €<br />
+    <b>Skaits:</b> @Model.Quantity <br />
+    <b>Pieejamais skaits:</b> @Model.AvailableQuantity <br />
+    <b>Apraksts:</b> @Html.Raw(System.Web.HttpUtility.HtmlDecode(@Model.Description)) <br />
+    <h5>Komentāri</h5>
+    @foreach (var c in ViewBag.Comment)
+    {
+    <div class="x_panel">
+        <div class="x_title">
+            <div align="right">
+                @if (c.Status == 0)
+                {
+                    <a class="btn btn-success" data-toggle="modal" href="#statusModal" data-id=@c.ID data-name=@c.Author data-status=@c.Status data-tabula="komentars"><i class="fa fa-check"></i></a>
+                }
+                else
+                {
+
+                }
+                <a class="btn btn-danger" data-toggle="modal" href="#deleteModal" data-id=@c.ID data-name=@c.Author data-tabula="komentars"><i class="fa fa-close"></i></a>
+            </div>
+            <b>@c.Author</b>
+        </div>
+        <div class="clearfix"></div>
+        @if (@c.ImagePath != null)
+        {
+            <img src=@c.ImagePath class="thumbnail img-responsive" />
+        }
+        <div class="x_content">@Html.Raw(System.Web.HttpUtility.HtmlDecode(@c.Text))</div>
+    </div>
+    }
+</div>
+<p>
+    <a href="@Url.Action("Index","Products")" class="btn btn-default">< Back to List</a>
+</p>

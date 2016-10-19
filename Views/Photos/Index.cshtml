@@ -1,0 +1,19 @@
+﻿@model IEnumerable<omarta_v1._1.Models.Photo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.GalleryName</h2>
+
+<p>
+    <a href="@Url.Action("Create","Photos", new { id = @ViewBag.GalleryID })" class="btn btn-lrg btn-primary">Pievienot fotogrāfiju</a>
+</p>
+@foreach (var item in Model)
+{
+    <div class="col-md-55">
+        <a data-toggle="modal" href="#deleteModal" data-id=@item.ID data-name=@item.ImagePath data-tabula="fotografija"><img style="width: 100%; display: block;" src=@item.ImagePath alt="image" class="img-responsive" /></a>
+    </div>
+}
+

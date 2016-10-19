@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css/main.css")
+    @Styles.Render("~/Content/css/style.css")
+    @Styles.Render("~/Content/scrolling/css/scrolling-nav.css")
+
+</head>
+<body class="nav-md">
+    <div id="page-wrapper">
+        <nav id="nav" class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <ul>
+                <li><a href="#home" class='page-scroll'><i class="fa fa-home"></i></a></li>
+                <li>
+                    <a href="#about" class='page-scroll'>Par Mums</a>
+                </li>
+                <li><a href="#features" class='page-scroll'>Jaunumi</a></li>
+                <li><a href="@Url.Action("Products","User")">Produkti</a></li>
+            </ul>
+        </nav>
+
+        @RenderBody()
+
+
+        <div id="footer">
+            <div class="container">
+                <section class="contact">
+
+                    <ul class="icons">
+                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    </ul>
+                </section>
+
+                <!-- Copyright -->
+                <div class="copyright">
+                    <ul class="menu">
+                        <li>&copy; Untitled. All rights reserved.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        @Scripts.Render("~/Content/js/jquery.min.js")
+        @Scripts.Render("~/Content/js/jquery.dropotron.min.js")
+        @Scripts.Render("~/Content/js/jquery.scrolly.min.js")
+        @Scripts.Render("~/Content/js/jquery.onvisible.min.js")
+
+        @Scripts.Render("~/Content/js/skel.min.js")
+        @Scripts.Render("~/Content/js/util.js")
+        @Scripts.Render("~/Content/js/main.js")
+        @Scripts.Render("~/Content/scrolling/js/scrolling-nav.js")
+        @Scripts.Render("~/Content/scrolling/js/jquery.easing.min.js")
+        <script>
+            $(document).ready(function () {
+                $('input.tableflat').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+            });
+
+            var asInitVals = new Array();
+            $(document).ready(function () {
+                var oTable = $('#example').dataTable({
+                    "oLanguage": {
+                        "sSearch": "Meklēt:"
+                    },
+                    "aoColumnDefs": [
+                        {
+                            'bSortable': false,
+                            'aTargets': [0]
+                        } //disables sorting for column one
+                    ],
+                    'iDisplayLength': 12,
+                    "sPaginationType": "full_numbers",
+                    "dom": 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+                    }
+                });
+                $("tfoot input").keyup(function () {
+                    /* Filter on the column based on the index of this element's parent <th> */
+                    oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+                });
+                $("tfoot input").each(function (i) {
+                    asInitVals[i] = this.value;
+                });
+                $("tfoot input").focus(function () {
+                    if (this.className == "search_init") {
+                        this.className = "";
+                        this.value = "";
+                    }
+                });
+                $("tfoot input").blur(function (i) {
+                    if (this.value == "") {
+                        this.className = "search_init";
+                        this.value = asInitVals[$("tfoot input").index(this)];
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.datepicker').datepicker({ dateFormat: 'dd/MM/yy' })
+            });
+        </script>
+    <script type="text/javascript">
+            jQuery(function(){
+             $("#Go_Top").hide().removeAttr("href");
+             if ($(window).scrollTop()>="10") $("#Go_Top").fadeIn("slow")
+             $(window).scroll(function(){
+              if ($(window).scrollTop()<="10") $("#Go_Top").fadeOut("slow")
+              else $("#Go_Top").fadeIn("slow")
+             });
+
+             $("#Go_Bottom").hide().removeAttr("href");
+             if ($(window).scrollTop()<=$(document).height()-"999") $("#Go_Bottom").fadeIn("slow")
+             $(window).scroll(function(){
+              if ($(window).scrollTop()>=$(document).height()-"999") $("#Go_Bottom").fadeOut("slow")
+              else $("#Go_Bottom").fadeIn("slow")
+             });
+
+             $("#Go_Top").click(function(){
+              $("html, body").animate({scrollTop:0},"slow")
+             })
+             $("#Go_Bottom").click(function(){
+              $("html, body").animate({scrollTop:$(document).height()},"slow")
+             })
+            });
+    </script>
+
+        @RenderSection("scripts", required: false)
+</body>
+</html>

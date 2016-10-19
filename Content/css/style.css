@@ -1,0 +1,36 @@
+/*body{
+	background: #FFE4B5;
+}*/
+.error_color{
+	color: #B22222;
+}
+.arrow{
+	z-index: 99;
+}
+#footer {
+	height:100px;
+}
+.error_text {
+  color: #B22222; 
+  font-weight: bold;
+}
+
+.but_pad{
+    padding-top: 10px;
+}
+
+.error_pad{
+    padding-top: 90px;
+}
+
+.visi{
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.pad{
+    padding-top: 0px;
+}
+.lpad{
+    padding-bottom: 10px;
+}

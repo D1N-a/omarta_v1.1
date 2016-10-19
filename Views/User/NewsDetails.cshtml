@@ -1,0 +1,25 @@
+﻿@model omarta_v1._1.Models.News
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_LayoutProducts.cshtml";
+}
+<section id="banner">
+    <header>
+        <h2><strong></strong></h2>
+    </header>
+</section>
+<div class="wrapper style2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2>@Model.Title</h2>
+                <div align="right"><small><i>@Model.Newsdate</i></small></div>
+                <div align="center"><img src=@Model.ImagePath alt="" class="img-responsive" /></div>
+                <p>@Html.Raw(System.Web.HttpUtility.HtmlDecode(@Model.Text))</p>
+                
+                <a href="@Url.Action("News", "User")"> Atpakaļ pie ziņam </a>
+            </div>
+        </div>
+    </div>
+</div>
+

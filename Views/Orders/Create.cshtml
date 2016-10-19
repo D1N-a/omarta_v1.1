@@ -1,0 +1,71 @@
+﻿@model omarta_v1._1.Models.Order
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutProducts.cshtml";
+}
+<section id="banner">
+    <header>
+        <h2><strong></strong></h2>
+    </header>
+</section>
+
+<div class="wrapper style2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="well">
+                    @using (Html.BeginForm(Html.BeginForm("Create", "Orders", FormMethod.Post, new { enctype = "multipart/form-data", id = @ViewBag.Product.ID })))
+            {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h2>
+                                @ViewBag.Product.Name
+                            </h2>
+                            <div class="row">
+                                @foreach (var g in ViewBag.Gallery)
+                                {
+                                    <div class="col-md-4">
+                                        <img src=@g.ImagePath class="thumbnail img-responsive" />
+                                    </div>
+                                }
+                            </div>
+                            <br />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    <div class="control-label col-md-2"><b>Skaits</b></div>
+                                    <div class="col-md-4">
+                                        @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="control-label col-md-2"><b>Paņemšanas datums</b></div>
+                                    <div class="col-md-4">
+                                        <input type="text" id="Takedate" class="form-control datepicker" name="Takedate" />
+                                        @Html.ValidationMessageFor(model => model.TakeDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="control-label col-md-2"><b>Komentārs</b></div>
+                                    <div class="col-md-8">
+                                        <textarea id="Text" class="ckeditor" name="Text"> </textarea>
+                                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Pasūtīt" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

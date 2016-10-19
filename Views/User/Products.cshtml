@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "o!Marta Produkti";
+    Layout = "~/Views/Shared/_LayoutProducts.cshtml";
+}
+
+<section id="banner">
+    <header>
+        <h2><strong></strong></h2>
+    </header>
+</section>
+
+<div class="wrapper style2">
+    <div class="container">
+        <div class="row">
+            <div align="center">
+                <a href="@Url.Action("Products","User", new { id = 0})" class="btn btn-default btn-lg" style="margin-right:15px; margin-bottom:15px;">Visi</a>
+                @foreach (var c in ViewBag.Categories)
+                {
+                    <a href="@Url.Action("Products","User", new { id = c.ID})" class="btn btn-default btn-lg" style="margin-right:15px; margin-bottom:15px;">@c.Name</a>
+                }
+            </div>
+        </div>
+            <div class="row">
+                @foreach (var p in ViewBag.Products)
+                {
+                    <div class="col-md-4" style="width: 25%">
+                        <div class="well">
+                            <img class="thumbnail img-responsive" src=@p.Gallery.Cover />
+                            <div align="left"><a href="@Url.Action("ProductDetails","User", new { id = p.ID})">@p.Name</a></div>
+                            <div align="right">@p.SalesPrice €</div>
+                        </div>
+                    </div>
+                }
+            </div>
+     </div>
+</div>

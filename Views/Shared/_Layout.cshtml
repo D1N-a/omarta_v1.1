@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/admin/css/bootstrap.min.css")
+    @Styles.Render("~/Content/admin/css/custom.css")
+    @Styles.Render("~/Content/admin/css/datatable.css")
+    @Styles.Render("~/Content/admin/fonts/css/font-awesome.min.css")
+    @Styles.Render("~/Content/admin/css/datatables/tools/css/dataTables.tableTools.css")
+    @Styles.Render("~/Content/admin/datepicker/css/datepicker.css")
+
+</head>
+<body class="nav-md">
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="deleteProductModalLabel">Apstiprināt dzēšanu</h4>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-b">Ši kategorija tiks dzēsta. </h5>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-danger" href="#" id='yes'>Jā</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Nē</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="deleteProductModalLabel">Apstiprināt izmaiņas</h4>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-b">Nebūs redzama pircējiem</h5>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-danger" href="#" id='ok'>Jā</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Nē</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="@Url.Action("Index","Home")" class="site_title"><i class="fa fa-exclamation"></i> <span>o!Marta</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br />
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <ul class="nav side-menu">
+                                <li><a href="@Url.Action("Index","Home")"><i class="fa fa-home"></i> Galvenā</a></li>
+                                <li><a href="@Url.Action("Index","Categories")"><i class="fa fa-sitemap"></i> Kategorijas </a></li>
+                                <li><a href="@Url.Action("Index","Products")"><i class="fa fa-barcode"></i> Produkti</a></li>
+                                <li><a href="@Url.Action("Index","Galleries")"><i class="fa fa-camera-retro"></i> Produktu Galerijas</a></li>
+                                <li><a href="@Url.Action("Index","Orders")"><i class="fa fa-shopping-cart"></i> Pasūtījumi</a></li>
+                                <li><a href="@Url.Action("Index","News")"><i class="fa fa-newspaper-o"></i> Ziņas</a></li>
+                                <li><a href="@Url.Action("Index","Sales")"><i class="fa fa-bar-chart"></i> Pārdošanas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#"> Iziet<i class="fa fa-sign-out pull-right fa_bot"></i></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="right_col" role="main">
+                @RenderBody()
+                <hr />
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/Content/admin/js/jquery.min.js")
+    @Scripts.Render("~/Content/admin/js/bootstrap.min.js")
+    @Scripts.Render("~/Content/admin/js/custom.js")
+    @Scripts.Render("~/Content/admin/js/chartjs/chart.min.js")
+
+    @Scripts.Render("~/Content/admin/js/nicescroll/jquery.nicescroll.min.js")
+    @Scripts.Render("~/Content/ckeditor/ckeditor.js")
+    @Scripts.Render("~/Content/admin/js/icheck/icheck.min.js")
+    @Scripts.Render("~/Content/admin/js/datatables/js/jquery.dataTables.js")
+    @Scripts.Render("~/Content/admin/datepicker/js/bootstrap-datepicker.js")
+    <script>
+            $(document).ready(function () {
+                $('input.tableflat').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+            });
+
+            var asInitVals = new Array();
+            $(document).ready(function () {
+                var oTable = $('#example').dataTable({
+                    "oLanguage": {
+                        "sSearch": "Meklēt:"
+                    },
+                    "aoColumnDefs": [
+                        {
+                            'bSortable': false,
+                            'aTargets': [0]
+                        } //disables sorting for column one
+            ],
+                    'iDisplayLength': 12,
+                    "sPaginationType": "full_numbers",
+                    "dom": 'T<"clear">lfrtip',
+                    "tableTools": {
+                        "sSwfPath": "<?php echo base_url('assets2/js/Datatables/tools/swf/copy_csv_xls_pdf.swf'); ?>"
+                    }
+                });
+                $("tfoot input").keyup(function () {
+                    /* Filter on the column based on the index of this element's parent <th> */
+                    oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
+                });
+                $("tfoot input").each(function (i) {
+                    asInitVals[i] = this.value;
+                });
+                $("tfoot input").focus(function () {
+                    if (this.className == "search_init") {
+                        this.className = "";
+                        this.value = "";
+                    }
+                });
+                $("tfoot input").blur(function (i) {
+                    if (this.value == "") {
+                        this.className = "search_init";
+                        this.value = asInitVals[$("tfoot input").index(this)];
+                    }
+                });
+            });
+    </script>
+    <script type="text/javascript">
+            $(document).ready(function() {
+                    $('.datepicker').datepicker({ dateFormat: 'dd/MM/yy' })
+            });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $('#deleteModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget)
+          var id = button.data('id')
+          var name = button.data('name')
+          var tabula = button.data('tabula')
+          var title = 'Dzēšanas apstiprināšana #' + id
+          if(tabula=='kategorija')
+          {
+            var content = 'Ši kategorija (' + name + ') tiks dzēsta!'
+            var route = "Categories/Delete/"
+          }
+          else if (tabula == 'zina')
+          {
+              var content = 'Ši ziņa (' + name + ') tiks dzēsta!'
+              var route = "News/Delete/"
+          }
+          else if (tabula == 'produkts') {
+              var content = 'Ši ziņa (' + name + ') tiks dzēsta!'
+              var route = "Products/Delete/"
+          }
+          else if (tabula == 'galerija') {
+              var content = 'Ši galerija (' + name + ') tiks dzēsta!'
+              var route = "Galleries/Delete/"
+          }
+          else if (tabula == 'fotografija') {
+              var content = 'Ši fotografija (' + name + ') tiks dzēsta!'
+              var route = "/Photos/Delete/"
+          }
+          else if (tabula == 'komentars') {
+              var content = 'Šis komentārs (' + name + ') tiks dzēsts!'
+              var route = "/Comments/Delete/"
+          }
+          else if (tabula == 'pasutijums') {
+              var content = 'Šis pasutījums (' + name + ') tiks dzēsts!'
+              var route = "/Orders/Delete/"
+          }
+          else var content='xxx'
+          var link = document.getElementById('yes')
+          var modal = $(this)
+          modal.find('.modal-title').text(title)
+          modal.find('.modal-b').text(content)
+          link.href=route+id
+        })
+        })
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $('#statusModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget)
+          var id = button.data('id')
+          var name = button.data('name')
+          var tabula = button.data('tabula')
+          var status = button.data('status')
+          var title = 'Apstiprināt izmaiņas #' + id
+          if(tabula=='kategorija' && status==0)
+          {
+              var content='Ši kategorija būs redzama pircējiem'
+              var route='Categories/ShowEdit/'
+          }
+          else if (tabula == 'kategorija' && status == 1)
+          {
+              var content = 'Ši kategorija nebūs redzama pircējiem'
+              var route = 'Categories/ShowEdit/'
+          }
+          else if (tabula == 'zina' && status == 0) {
+              var content = 'Ši ziņa būs redzama pircējiem'
+              var route = '/News/ShowEdit/'
+          }
+          else if (tabula == 'zina' && status == 1) {
+              var content = 'Ši ziņa nebūs redzama pircējiem'
+              var route = '/News/ShowEdit/'
+          }
+          else if (tabula == 'komentars' && status == 0) {
+              var content = 'Šis komentārs būs redzams pircējiem'
+              var route = '/Comments/ShowEdit/'
+          }
+          else if (tabula == 'komentars' && status == 1) {
+              var content = 'Šis komentārs nebūs redzams pircējiem'
+              var route = '/Comments/ShowEdit/'
+          }
+          else if (tabula == 'pasutijums' && status == 0) {
+              var content = 'Šo pasutījumu paņems pircējs. Produktu pieejamais skaits samazinās'
+              var route = '/Orders/ShowEdit/'
+          }
+          var link = document.getElementById('ok')
+          var modal = $(this)
+          modal.find('.modal-title').text(title)
+          modal.find('.modal-b').text(content)
+          link.href=route+id
+        })
+        })
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "Ziņas";
+    Layout = "~/Views/Shared/_LayoutProducts.cshtml";
+}
+<section id="banner">
+    <header>
+        <h2><strong></strong></h2>
+    </header>
+</section>
+
+<div class="wrapper style2">
+    <div class="container">
+        <div class="row">
+            @foreach (var n in ViewBag.News)
+            {
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="well">
+                    <div><h3 style="margin-top:0"><a href="@Url.Action("NewsDetails","User", new { id = n.ID })">@n.Title</a></h3></div>
+                    <div><img src=@n.ImagePath alt="" class="img-responsive" height="150" width="200"/></div>
+                    <div>
+                        @if (n.Text.Length <= 300)
+                        {
+                            @Html.Raw(System.Web.HttpUtility.HtmlDecode(n.Text))
+                        }
+                        else
+                        {
+                            @Html.Raw(System.Web.HttpUtility.HtmlDecode(n.Text.Substring(0, 300)))
+                        }
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+
