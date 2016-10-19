@@ -18,7 +18,14 @@ namespace omarta_v1._1.Controllers
         // GET: Galleries
         public ActionResult Index()
         {
+<<<<<<< HEAD
             ViewBag.Photo = db.Photos.ToList();
+=======
+<<<<<<< HEAD
+            ViewBag.Photo = db.Photos.ToList();
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
             return View(db.Galleries.ToList());
         }
 
@@ -33,14 +40,48 @@ namespace omarta_v1._1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
         public ActionResult Create([Bind(Include = "ID,Name,Cover")] Gallery gallery)
         {
             if (ModelState.IsValid)
             {
+<<<<<<< HEAD
+=======
+=======
+        public ActionResult Create([Bind(Include = "ID,Name,Cover")] Gallery gallery, HttpPostedFileBase cover)
+        {
+            if (ModelState.IsValid)
+            {
+                if (cover == null)
+                {
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
                     gallery.Cover = "/Images/standart.jpg";
                     db.Galleries.Add(gallery);
                     db.SaveChanges();
                     return RedirectToAction("Index");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+                }
+                else
+                {
+                    cover.SaveAs(Server.MapPath("~/Images/News") + Path.GetFileName(cover.FileName));
+
+                    string filename = Path.GetFileName(cover.FileName);
+
+                    gallery.Cover = "/Images/News" + Path.GetFileName(cover.FileName);
+
+                    db.Galleries.Add(gallery);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
             }
 
             return View(gallery);
@@ -72,7 +113,24 @@ namespace omarta_v1._1.Controllers
             {
                 Gallery holder = db.Galleries.Where(x => x.ID == gallery.ID).FirstOrDefault();
                 holder.Name = gallery.Name;
+<<<<<<< HEAD
                 holder.Cover = holder.Cover;
+=======
+<<<<<<< HEAD
+                holder.Cover = holder.Cover;
+=======
+                if (cover == null)
+                {
+                    holder.Cover = holder.Cover;
+                }
+                else
+                {
+                    cover.SaveAs(Server.MapPath("~/Images/News") + Path.GetFileName(cover.FileName));
+                    string filename = Path.GetFileName(cover.FileName);
+                    holder.Cover = "/Images/News" + Path.GetFileName(cover.FileName);
+                }
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

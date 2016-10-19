@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+<<<<<<< HEAD
 using System.Net;
+=======
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,6 +27,7 @@ namespace omarta_v1._1.Controllers
             ViewBag.News = db.News.Where(x => x.Show == 1).ToList();
             return View();
         }
+<<<<<<< HEAD
 
         public ActionResult NewsDetails(int? id)
         {
@@ -71,5 +75,7 @@ namespace omarta_v1._1.Controllers
             }
             return View();
         }
+=======
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
     }
 }

@@ -9,7 +9,11 @@
 
 <section id="banner">
     <header>
+<<<<<<< HEAD
         <h2><strong>o!Marta</strong></h2>
+=======
+        <h2><strong>O!Marta</strong></h2>
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
     </header>
 </section>
 
@@ -51,7 +55,11 @@
             <article class="4u 12u(mobile) special">
                 <a href="#" class="image featured "><img src=@n.ImagePath alt="" class="img-responsive" /></a>
                 <header>
+<<<<<<< HEAD
                     <h3><a href="@Url.Action("NewsDetails","User", new { id = n.ID })">@n.Title</a></h3>
+=======
+                    <h3><a href="#">@n.Title</a></h3>
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
                 </header>
                 <p>
                     @if (n.Text.Length <= 100)
@@ -78,9 +86,15 @@
         @foreach(var c in ViewBag.Categories)
         {
         <article>
+<<<<<<< HEAD
             <a href="@Url.Action("Products","User", new { id = c.ID})" class="image featured"><img src=@c.ImagePath height='200' width='150' /></a>
             <header>
                 <h3><a href="@Url.Action("Products","User", new { id = c.ID})">@c.Name</a></h3>
+=======
+            <a href="#" class="image featured"><img src=@c.ImagePath height='200' width='150' /></a>
+            <header>
+                <h3><a href="#">@c.Name</a></h3>
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
             </header>
         </article>
         }

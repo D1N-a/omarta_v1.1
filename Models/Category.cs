@@ -32,9 +32,12 @@ namespace omarta_v1._1.Models
         public System.Data.Entity.DbSet<omarta_v1._1.Models.Gallery> Galleries { get; set; }
 
         public System.Data.Entity.DbSet<omarta_v1._1.Models.Photo> Photos { get; set; }
+<<<<<<< HEAD
 
         public DbSet<Comment> Comments { get; set; }
 
         public System.Data.Entity.DbSet<omarta_v1._1.Models.Order> Orders { get; set; }
+=======
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
     }
 }

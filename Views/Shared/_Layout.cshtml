@@ -66,7 +66,11 @@
                                 <li><a href="@Url.Action("Index","Categories")"><i class="fa fa-sitemap"></i> Kategorijas </a></li>
                                 <li><a href="@Url.Action("Index","Products")"><i class="fa fa-barcode"></i> Produkti</a></li>
                                 <li><a href="@Url.Action("Index","Galleries")"><i class="fa fa-camera-retro"></i> Produktu Galerijas</a></li>
+<<<<<<< HEAD
                                 <li><a href="@Url.Action("Index","Orders")"><i class="fa fa-shopping-cart"></i> Pasūtījumi</a></li>
+=======
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i> Pasūtījumi</a></li>
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
                                 <li><a href="@Url.Action("Index","News")"><i class="fa fa-newspaper-o"></i> Ziņas</a></li>
                                 <li><a href="@Url.Action("Index","Sales")"><i class="fa fa-bar-chart"></i> Pārdošanas</a></li>
                             </ul>
@@ -182,10 +186,15 @@
               var content = 'Ši galerija (' + name + ') tiks dzēsta!'
               var route = "Galleries/Delete/"
           }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
           else if (tabula == 'fotografija') {
               var content = 'Ši fotografija (' + name + ') tiks dzēsta!'
               var route = "/Photos/Delete/"
           }
+<<<<<<< HEAD
           else if (tabula == 'komentars') {
               var content = 'Šis komentārs (' + name + ') tiks dzēsts!'
               var route = "/Comments/Delete/"
@@ -194,6 +203,10 @@
               var content = 'Šis pasutījums (' + name + ') tiks dzēsts!'
               var route = "/Orders/Delete/"
           }
+=======
+=======
+>>>>>>> d659a7aad95dd4c8b46f6e113cf497211aa6848e
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
           else var content='xxx'
           var link = document.getElementById('yes')
           var modal = $(this)
@@ -230,6 +243,7 @@
               var content = 'Ši ziņa nebūs redzama pircējiem'
               var route = '/News/ShowEdit/'
           }
+<<<<<<< HEAD
           else if (tabula == 'komentars' && status == 0) {
               var content = 'Šis komentārs būs redzams pircējiem'
               var route = '/Comments/ShowEdit/'
@@ -242,6 +256,8 @@
               var content = 'Šo pasutījumu paņems pircējs. Produktu pieejamais skaits samazinās'
               var route = '/Orders/ShowEdit/'
           }
+=======
+>>>>>>> 01aa43a9bd2c6603bcfe8cd5bed8dc3c996744c7
           var link = document.getElementById('ok')
           var modal = $(this)
           modal.find('.modal-title').text(title)
